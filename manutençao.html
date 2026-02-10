@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Site em Manutenção</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+
+<!-- Ícones -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:#0c0c0c;
+  color:white;
+  font-family:'Outfit',sans-serif;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  text-align:center;
+  overflow:hidden;
+}
+
+.container{
+  max-width:500px;
+  padding:40px;
+  animation:fade 1.2s ease-in-out;
+}
+
+@keyframes fade{
+  from{opacity:0; transform:translateY(20px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+.icon{
+  font-size:60px;
+  color:#ba181b;
+  margin-bottom:20px;
+  animation:pulse 1.8s infinite;
+}
+
+@keyframes pulse{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.1);}
+  100%{transform:scale(1);}
+}
+
+h1{
+  font-size:38px;
+  margin-bottom:15px;
+  font-weight:800;
+}
+
+p{
+  font-size:17px;
+  opacity:.85;
+  line-height:1.6;
+}
+
+small{
+  display:block;
+  margin-top:25px;
+  opacity:.5;
+  font-size:13px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <div class="icon">
+    <i class="fa-solid fa-screwdriver-wrench"></i>
+  </div>
+
+  <h1>Site em Manutenção</h1>
+
+  <p>
+    Estamos realizando melhorias para oferecer uma experiência ainda melhor para você.<br><br>
+    Pedimos um pouco de <strong>paciência</strong> e voltaremos em breve 🚀
+  </p>
+
+  <small>Erro 503 • Serviço temporariamente indisponível</small>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nicolas Designer</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;scroll-behavior:smooth}
+
+body{
+  margin:0;
+  font-family:'Outfit',sans-serif;
+  background:#0c0c0c;
+  color:white;
+  overflow-x:hidden;
+}
+
+:root{--main-color:rgb(186,24,27)}
+
+header{
+  position:fixed;
+  top:0;
+  width:100%;
+  background:#000;
+  padding:15px 20px;
+  z-index:1000;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo{
+  font-weight:800;
+  font-size:22px;
+  color:var(--main-color);
+}
+
+.menu-btn{
+  width:32px;
+  height:22px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  cursor:pointer;
+}
+.menu-btn span{
+  height:4px;
+  background:var(--main-color);
+  border-radius:4px;
+}
+
+nav{
+  display:none;
+  position:absolute;
+  top:60px;
+  right:0;
+  background:#000;
+  width:220px;
+}
+nav a{
+  display:block;
+  padding:14px;
+  color:white;
+  text-decoration:none;
+  border-bottom:1px solid #222;
+}
+nav a:hover{background:var(--main-color)}
+
+.hero{
+  padding:140px 20px 80px;
+  text-align:center;
+}
+.hero-logo{height:95px;margin-bottom:18px}
+.hero h1{font-size:38px;font-weight:800}
+.hero span{color:var(--main-color)}
+.hero p{max-width:600px;margin:auto;opacity:.85;font-size:18px}
+
+.cta-btn{
+  display:inline-block;
+  margin-top:25px;
+  padding:14px 28px;
+  background:var(--main-color);
+  color:white;
+  text-decoration:none;
+  border-radius:30px;
+  font-weight:700;
+  animation:floatBtn 2s infinite ease-in-out;
+}
+
+@keyframes floatBtn{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-6px)}
+  100%{transform:translateY(0)}
+}
+
+.secao{padding:80px 20px;text-align:center}
+.secao h2{font-size:30px;font-weight:800}
+.secao p{max-width:750px;margin:auto;opacity:.85}
+.destaque{color:var(--main-color);font-weight:700}
+
+.servicos-grid,
+.links-grid,
+.avaliacoes-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:25px;
+  margin-top:35px;
+}
+
+.servico-card,
+.link-box,
+.avaliacao-card{
+  background:#111;
+  padding:20px;
+  border-radius:16px;
+}
+
+.servico-card img{width:100%;border-radius:12px}
+
+.extra-servico{
+  margin-top:15px;
+  font-size:15px;
+  line-height:1.5;
+  opacity:.9;
+}
+
+.link-box{
+  border:2px solid var(--main-color);
+  color:white;
+  text-decoration:none;
+  font-weight:700;
+  transition:.3s;
+}
+.link-box:hover{
+  background:var(--main-color);
+  transform:scale(1.08);
+}
+
+.estrelas{color:gold}
+
+footer{
+  background:#000;
+  padding:60px 20px;
+  text-align:center;
+}
+
+/* EVENTOS */
+.event-layer{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+}
+
+.snowflake{
+  position:absolute;
+  top:-10px;
+  font-size:18px;
+  opacity:.8;
+  animation:fall linear infinite;
+}
+@keyframes fall{
+  to{transform:translateY(110vh)}
+}
+
+/* PISCA-PISCA REALISTA */
+.lights-wire{
+  position:fixed;
+  top:70px;
+  left:0;
+  width:100%;
+  height:80px;
+  pointer-events:none;
+  z-index:999;
+}
+
+.wire-line{
+  position:absolute;
+  top:20px;
+  width:100%;
+  height:4px;
+  background:linear-gradient(to right,#222,#333,#222);
+  border-radius:5px;
+}
+
+.bulb{
+  position:absolute;
+  top:18px;
+  width:22px;
+  height:32px;
+  border-radius:50% 50% 45% 45%;
+  animation:glow 2s infinite ease-in-out alternate;
+}
+
+.bulb::after{
+  content:"";
+  position:absolute;
+  top:-8px;
+  left:6px;
+  width:10px;
+  height:10px;
+  background:#111;
+  border-radius:3px;
+}
+
+@keyframes glow{
+  0%{
+    opacity:.4;
+    box-shadow:0 0 5px currentColor;
+  }
+  100%{
+    opacity:1;
+    box-shadow:
+      0 0 12px currentColor,
+      0 0 25px currentColor,
+      0 0 45px currentColor;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="event-layer" id="eventLayer"></div>
+
+<header>
+  <div class="logo">Nicolas Designer</div>
+  <div class="menu-btn" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+  <nav id="menu">
+    <a href="#sobre">Sobre</a>
+    <a href="#porque">Por que nos contratar</a>
+    <a href="#servicos">Serviços</a>
+    <a href="#links">Links</a>
+    <a href="#avaliacoes">Avaliações</a>
+  </nav>
+</header>
+
+<section class="hero" id="sobre">
+  <img src="logo.gif" class="hero-logo">
+  <h1><span>Nicolas</span> Designer</h1>
+  <p>Criação de <span class="destaque">camisas</span>, 
+     <span class="destaque">logos</span> e 
+     <span class="destaque">banners</span>.</p>
+
+  <a href="https://instagram.com" target="_blank" class="cta-btn">
+    CONTRATE PELO DIRECT
+  </a>
+</section>
+
+<section class="secao" id="porque">
+  <h2>POR QUE NOS CONTRATAR?</h2>
+  <p>
+    Já realizamos mais de
+    <span class="contador" data-target="70" data-plus="true">0</span>
+    projetos entregues com excelência.
+  </p>
+  <p>
+    Atuamos no design desde
+    <span class="contador" data-target="2019">0</span>,
+    iniciando oficialmente nossas vendas em
+    <span class="contador" data-target="2023">0</span>
+  </p>
+</section>
+
+<section class="secao" id="servicos">
+  <h2>SERVIÇOS</h2>
+  <div class="servicos-grid">
+    <div class="servico-card"><img src="camisa.png"><h3>Camisas</h3></div>
+    <div class="servico-card"><img src="logo.png"><h3>Logos</h3></div>
+    <div class="servico-card">
+      <img src="thumbnail.png">
+      <h3>Thumbnail</h3>
+      <p class="extra-servico">
+        Não encontrou o serviço ideal? <strong>Entre em contato conosco.</strong>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="secao" id="links">
+  <h2>LINKS ÚTEIS</h2>
+  <div class="links-grid">
+    <a class="link-box" href="https://nddsgn.keepo.bio" target="_blank">Redes Sociais</a>
+    <a class="link-box" href="https://www.behance.net/nddesign3" target="_blank">Projetos</a>
+  </div>
+</section>
+
+<section class="secao" id="avaliacoes">
+  <h2>AVALIAÇÕES</h2>
+  <div class="avaliacoes-grid">
+    <div class="avaliacao-card"><div class="estrelas">★★★★★</div>Design perfeito</div>
+    <div class="avaliacao-card"><div class="estrelas">★★★★★</div>Entrega rápida</div>
+  </div>
+</section>
+
+<footer>
+  <p>© Copyright 2026 - Nicolas Designer Gráfico</p>
+</footer>
+
+<script>
+function toggleMenu(){
+  const m=document.getElementById("menu");
+  m.style.display=m.style.display==="block"?"none":"block";
+}
+
+/* CONTADOR SEM PONTOS */
+const counters=document.querySelectorAll(".contador");
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+const el=entry.target;
+const target=+el.dataset.target;
+const plus=el.dataset.plus==="true";
+let count=0;
+const increment=target/120;
+function update(){
+count+=increment;
+if(count<target){
+el.textContent=Math.floor(count);
+requestAnimationFrame(update);
+}else{
+el.textContent=target+(plus?"+":"");
+}
+}
+update();
+observer.unobserve(el);
+}
+});
+},{threshold:0.6});
+counters.forEach(c=>observer.observe(c));
+
+/* EVENTOS */
+const layer=document.getElementById("eventLayer");
+const d=new Date();
+const day=d.getDate();
+const month=d.getMonth()+1;
+
+/* NATAL */
+if(month===12 && day<=25){
+for(let i=0;i<40;i++){
+const s=document.createElement("div");
+s.className="snowflake";
+s.textContent="❄";
+s.style.left=Math.random()*100+"vw";
+s.style.animationDuration=5+Math.random()*6+"s";
+layer.appendChild(s);
+}
+
+const wire=document.createElement("div");
+wire.className="lights-wire";
+const line=document.createElement("div");
+line.className="wire-line";
+wire.appendChild(line);
+
+const colors=["#ff2e2e","#00ff88","#ffd000","#0099ff","#ff00cc"];
+for(let i=0;i<16;i++){
+const bulb=document.createElement("div");
+bulb.className="bulb";
+bulb.style.left=(i*6)+"%";
+bulb.style.color=colors[i%colors.length];
+bulb.style.background=colors[i%colors.length];
+bulb.style.animationDelay=(i*0.2)+"s";
+wire.appendChild(bulb);
+}
+document.body.appendChild(wire);
+}
+
+/* ANO NOVO */
+if((month===12 && day>=26)||(month===1 && day===1)){
+function createFirework(){
+const centerX=Math.random()*window.innerWidth;
+const centerY=Math.random()*window.innerHeight*0.6;
+const colors=["#ff0040","#00ffff","#ffff00","#ff7b00","#00ff7b","#ffffff"];
+for(let i=0;i<120;i++){
+const p=document.createElement("div");
+p.style.position="fixed";
+p.style.width="5px";
+p.style.height="5px";
+p.style.borderRadius="50%";
+p.style.background=colors[Math.floor(Math.random()*colors.length)];
+p.style.left=centerX+"px";
+p.style.top=centerY+"px";
+p.style.boxShadow="0 0 12px "+p.style.background;
+document.body.appendChild(p);
+
+const angle=Math.random()*2*Math.PI;
+const distance=Math.random()*280+80;
+const x=Math.cos(angle)*distance;
+const y=Math.sin(angle)*distance;
+
+p.animate([
+{transform:"translate(0,0)",opacity:1},
+{transform:`translate(${x}px,${y}px)`,opacity:0}
+],{duration:1400,easing:"ease-out"});
+
+setTimeout(()=>p.remove(),1400);
+}
+}
+setInterval(createFirework,1700);
+}
+</script>
+
+</body>
+</html>
