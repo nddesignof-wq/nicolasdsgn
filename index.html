@@ -501,6 +501,32 @@ setTimeout(()=>p.remove(),1400);
 setInterval(createFirework,1700);
 }
 </script>
+  
+<script>
+window.addEventListener("load", function () {
 
+  const elements = document.querySelectorAll(
+    ".hero, .secao, .servico-card, .avaliacao-card, .link-box"
+  );
+
+  elements.forEach(el => {
+    el.classList.add("scroll-anim");
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("active");
+      }
+    });
+  }, {
+    threshold: 0.2
+  });
+
+  elements.forEach(el => observer.observe(el));
+
+});
+</script>
+  
 </body>
 </html>
