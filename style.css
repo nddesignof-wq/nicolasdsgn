@@ -776,3 +776,14 @@ footer .email-icon {
   outline: none;
   box-shadow: none;
 }
+/* ANIMAÇÃO AO ROLAR */
+.scroll-anim {
+  opacity: 0;
+  transform: translateY(35px);
+  transition: all 0.5s ease-out;
+}
+
+.scroll-anim.active {
+  opacity: 1;
+  transform: translateY(0);
+}
