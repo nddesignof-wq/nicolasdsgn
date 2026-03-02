@@ -787,3 +787,9 @@ footer .email-icon {
   opacity: 1;
   transform: translateY(0);
 }
+
+.divider {
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.4); /* branco com transparência */
+  margin: 40px 0;
+}
