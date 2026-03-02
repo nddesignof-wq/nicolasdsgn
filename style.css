@@ -790,6 +790,11 @@ footer .email-icon {
 
 .divider {
   height: 1px;
-  background-color: rgba(255, 255, 255, 0.4); /* branco com transparência */
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.6),
+    transparent
+  );
   margin: 40px 0;
 }
